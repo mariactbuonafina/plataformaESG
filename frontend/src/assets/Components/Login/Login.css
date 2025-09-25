@@ -1,0 +1,99 @@
+.right-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background: #fff;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+}
+ 
+ .login-card h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.login-card p {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Tabs de entrar/cadastrar */
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabs button.active {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+.input-container {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.input-container .icon {
+  color: #9ca3af;
+  margin-right: 10px;
+}
+
+.input-container input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+}
+
+/* Botão */
+.btn-login {
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+.btn-login:hover {
+  background: #15803d;
+}
+
+/* Link esqueceu senha */
+.forgot-password {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #2563eb;
+  text-decoration: none;
+}
