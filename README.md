@@ -46,7 +46,7 @@ O projeto simula um ambiente real de desenvolvimento, com:
 ```plataformaESG/
 ├─ backend/ # API Node.js
 │ ├─ src/
-│ │ ├─ index.js
+│ │ ├─ app.js
 │ │ └─ db.js
 │ ├─ package.json
 │ └─ Dockerfile
@@ -62,7 +62,7 @@ O projeto simula um ambiente real de desenvolvimento, com:
 ---
 
 ## Pré-requisitos
-- Node.js 18 ou superior  
+- Node.js 19 ou superior  
 - npm 9 ou superior  
 - Docker 20.10+  
 - PostgreSQL 15 (opcional se usar Docker)  
