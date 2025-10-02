@@ -1,6 +1,6 @@
 # Plataforma ESG
 
-![Node.js](https://img.shields.io/badge/Node.js-v18.x-green)
+![Node.js](https://img.shields.io/badge/Node.js-v19.x-green)
 ![Express](https://img.shields.io/badge/Express-4.x-blue)
 ![React](https://img.shields.io/badge/React-18-blueviolet)
 ![Docker](https://img.shields.io/badge/Docker-20.10-blue)
