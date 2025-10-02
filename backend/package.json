@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "API ESG para questionários, evidências e selos",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon backend/src/index.js",
-    "test": "cross-env NODE_ENV=production node backend/src/index.js"
+    "start": "node src/app.js",
+    "dev": "cross-env NODE_ENV=development nodemon backend/src/app.js",
+    "test": "cross-env NODE_ENV=production node backend/src/app.js"
   },
   "keywords": [],
   "author": "",
