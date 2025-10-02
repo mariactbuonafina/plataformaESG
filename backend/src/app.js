@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3333;
 const db = require('./db');
+
+app.use(cors()); // habilita cors em todas as rotas
 
 app.use(express.json());
 
