@@ -4,40 +4,42 @@ import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
-  const [password, setPassoword] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3333/login', {
+      const response = await fetch('https://effective-disco-r45xvrwv4r4cwxwx-3333.app.github.dev/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          username,
-          password
-        })
+        body: JSON.stringify({ username, password })
       });
 
       const data = await response.json();
-      // Exemplo: mostrar resposta da API
-      alert("Resposta da API: " + JSON.stringify(data));
+
+      if (response.ok && data.success) {
+        alert("Login realizado com sucesso!");
+        localStorage.setItem("user", JSON.stringify(data.user));
+        window.location.href = "/Inicio"; // redirecionamento
+      } else {
+        alert(data.message || "Usuário ou senha inválidos");
+      }
+
     } catch (error) {
       alert("Erro ao conectar com a API");
+      console.error(error);
     }
   };
 
   return (
     <div className='login-page'>
-      {/*Lado Esquerdo da tela*/}
+      {/* Lado esquerdo */}
       <div className="left-side">
-        <h2 className="logo">
-          <img src="src/assets/logo.png" /> Plataforma <span>ESG</span>
-        </h2>
+        <h2 className="logo"><img src="src/assets/logo.png"/> Plataforma <span>ESG</span></h2>
         <span className="subtitulo">Certificação Sustentável</span>
-
         <div className="feature">
           <span className="icon"><img src="src/assets/Group 16.png" alt="" /></span>
           <div>
@@ -45,7 +47,6 @@ const Login = () => {
             <p>Questionários detalhados sobre ESG</p>
           </div>
         </div>
-
         <div className="feature">
           <span className="icon"><img src="src/assets/Group 17.png" alt="" /></span>
           <div>
@@ -53,33 +54,29 @@ const Login = () => {
             <p>Selos Bronze, Prata e Ouro</p>
           </div>
         </div>
-
         <p className="cta">Junte-se a empresas que já fazem a diferença</p>
       </div>
 
-      {/*Lado Direito*/}
+      {/* Lado direito */}
       <div className="right-side">
         <div className="login-card">
           <form onSubmit={handleSubmit}>
             <h1>Bem-vindo</h1>
-            <p> Faça login ou crie sua conta</p>
-            <div>
-              <div className="tabs">
-                <button type="button" className="active">Entrar</button>
-                <button type="button">Cadastrar</button>
-              </div>
+            <p>Faça login ou crie sua conta</p>
 
-              <div className="input-container">
-                <input type="email" placeholder='Seu e-mail' onChange={(e) => setUsername(e.target.value)} />
-                <FaUser className="icon" />
-              </div>
+            <div className="tabs">
+              <button type="button" className="active">Entrar</button>
+              <button type="button">Cadastrar</button>
             </div>
 
-            <div>
-              <div className="input-container">
-                <input type="password" placeholder='Sua senha' onChange={(e) => setPassoword(e.target.value)} />
-                <FaLock className="icon" />
-              </div>
+            <div className="input-container">
+              <input type="email" placeholder='Seu e-mail' onChange={(e) => setUsername(e.target.value)} />
+              <FaUser className="icon" />
+            </div>
+
+            <div className="input-container">
+              <input type="password" placeholder='Sua senha' onChange={(e) => setPassword(e.target.value)} />
+              <FaLock className="icon" />
             </div>
 
             <button type="submit" className="btn-login">Entrar</button>

@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 100%;       /* ocupa toda a largura da tela */
+  margin: 0 auto;
+  background-color: transparent; /* remove o fundo branco grande */
+  border-radius: 0;      /* remove o arredondamento */
+  box-shadow: none;      /* remove sombra grande */
+  padding: 20px;         /* mantém algum espaçamento interno */
+}
+
+
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 28px;
+  color: #2c5530;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: #666;
+  font-size: 16px;
+}
+
+.progress-section {
+  display: flex;
+  justify-content: center; /* centraliza os cards */
+  gap: 70px; /* espaço entre os cards */
+  margin-bottom: 40px;
+  max-width: 1500px; /* largura máxima da área dos cards */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-item {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  margin: 0 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid;
+}
+
+/* Governança */
+.progress-item.governanca {
+  border-color: #37D45C; /* borda sólida */
+  background-color: rgba(55, 212, 92, 0.17); /* 17% opacity */
+  
+}
+
+/* Ambiental */
+.progress-item.ambiental {
+  border-color: #1C4BC3;
+  background-color: rgba(28, 75, 195, 0.17);
+}
+
+/* Social */
+.progress-item.social {
+  border-color: #A537D4;
+  background-color: rgba(165, 55, 212, 0.17);
+}
+
+.progress-item.governanca p { 
+    color: #0B7B42;
+  font-weight:400;
+ }
+
+.progress-item.ambiental p {
+     color: #1C4BC3; 
+     font-weight: 400; 
+    }
+.progress-item.social p { 
+    color: #A537D4;
+ font-weight: 400;
+}
+
+
+/* Hover */
+.progress-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Governança */
+.progress-item.governanca h3 {
+  color: #0B7B42; /* mesma cor da borda */
+  font-weight: 670; /* mais grosso */
+}
+
+/* Ambiental */
+.progress-item.ambiental h3 {
+  color: #1C4BC3;
+  font-weight: 670;
+}
+
+/* Social */
+.progress-item.social h3 {
+  color: #A537D4;
+  font-weight: 670;
+}
+
+
+.progress-item h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+
+
+
+.esg-section {
+ display: flex;
+  justify-content: center; /* centraliza os cards */
+  gap: 70px; /* espaço entre os cards */
+  margin-bottom: 40px;
+  max-width: 1500px; /* largura máxima da área dos cards */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.esg-item {
+  flex: 0 1 200px; /* largura proporcional */
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px 20px; /* mais espaço interno */
+  min-height: 250px; /* define altura mínima */
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* mantém botão no final */
+
+
+}
+
+.esg-item h3 {
+  font-size: 18px;
+  color: #444444;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.esg-item p {
+  color: #444444;
+  font-size: 13px;
+  margin-bottom: 15px;
+  text-align: center;
+  
+}
+
+
+/* Botão de iniciar avaliação com gradiente */
+.button-avaliacao {
+  background: linear-gradient(90deg, #356EFE 0%, #204298 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.2s;
+  
+  
+}
+
+
+.button-avaliacao:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+
+.button {
+  display: inline-block;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  min-width: 150px;
+  padding : 10px 20px;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #1e3a23;
+}
+
+.disabled-evid {
+  background-color: #BEBCBC;
+  cursor: not-allowed;
+}
+.disabled-doc{
+  background-color: #BEBCBC;
+  cursor: not-allowed;
+
+}
+
+.disabled:hover {
+  background-color: #a0a0a0;
+}
+
+.esg-item .note {
+  font-size: 9px;
+  color: #444444;
+  margin-top: 10px;
+  font-style: arial;
+}
+
+.progress-section img {
+  width: 60px;       /* ajusta a largura */
+  height: 60px;      /* mantém altura igual */
+  object-fit: contain; /* mantém proporção sem cortar */
+  
+}
+
+/* Container da barra de progresso */
+.barra-progresso {
+  width: 100%;
+  height: 12px;             /* altura da barra */
+  background-color: #e0e0e0; /* cor de fundo da barra */
+  border-radius: 6px;
+  margin-bottom: 20px;      /* distância entre a barra e os cards */
+  overflow: hidden;
+}
+
+/* Progresso preenchido */
+.progresso {
+  height: 100%;
+  background: linear-gradient(90deg, #356EFE 0%, #204298 100%);
+  border-radius: 6px 0 0 6px; /* borda arredondada apenas no início */
+  transition: width 0.5s ease;
+}
+
