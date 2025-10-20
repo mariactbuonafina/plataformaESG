@@ -1,249 +1,281 @@
-.avaliacao-container {
-  background: #f8fbff;
-  min-height: 100vh;
-  font-family: "Inter", sans-serif;
-  padding: 20px 50px;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Fundo geral azul claro */
+    background-color: #f0f8ff; 
 }
 
-/* ===== Cabeçalho ===== */
+.avaliacao-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Cabeçalho --- */
 .avaliacao-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
 }
 
 .btn-voltar {
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 8px 16px;
-  cursor: pointer;
+    /* Cor do card */
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    /* Cor do texto escuro */
+    color: #343a40; 
 }
 
 .titulo {
-  text-align: center;
+    text-align: center;
 }
 
 .titulo h2 {
-  margin: 0;
-  font-size: 1.4rem;
+    font-size: 24px;
+    margin: 0;
+    /* Cor do texto escuro */
+    color: #343a40; 
 }
 
 .titulo p {
-  margin: 0;
-  color: gray;
-  font-size: 0.9rem;
+    font-size: 14px;
+    /* Cor do texto secundário */
+    color: #6c757d; 
+    margin: 5px 0 0;
 }
 
 .progresso-geral {
-  text-align: right;
+    font-size: 28px;
+    font-weight: bold;
+    /* Cor do sucesso/verde */
+    color: #28a745; 
 }
 
-.progresso-geral h3 {
-  margin: 0;
-  color: #00a650;
-  font-size: 1.5rem;
+/* --- Card de Progresso (Barra) --- */
+.progresso-card {
+    /* Cor do card */
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
 }
 
-.progresso-geral p {
-  margin: 0;
-  color: gray;
-  font-size: 0.8rem;
+.progresso-card .card-titulo {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
-/* ===== Progresso ===== */
-.progresso-avaliacao {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-bottom: 30px;
-  position: relative;
+.barra-container {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
-.progresso-avaliacao h4 {
-  margin: 0 0 10px 0;
-}
-
-.barra {
-  background: #eee;
-  border-radius: 6px;
-  height: 12px;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.barra .preenchimento {
-  background: #00a650;
-  height: 100%;
-  width: 17%;
-  transition: width 0.3s;
+.barra-segmento-preenchido {
+    height: 100%;
+    /* Cor do progresso inicial / sucesso */
+    background-color: #28a745; 
+    transition: width 0.3s;
 }
 
 .categorias {
-  display: flex;
-  justify-content: space-between;
-  color: gray;
-  font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    /* Cor do texto secundário */
+    color: #6c757d; 
 }
 
 .contador {
-  position: absolute;
-  right: 20px;
-  top: 18px;
-  color: #555;
-  font-weight: 500;
+    display: none; 
 }
 
-/* ===== Card Pergunta ===== */
+/* --- Card da Pergunta --- */
 .card-pergunta {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  padding: 30px;
-  max-width: 750px;
-  margin: 0 auto;
+    /* Cor do card */
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+.card-pergunta .card-header {
+    margin-bottom: 20px;
 }
 
-.card-header .icon {
-  width: 40px;
-  height: 40px;
+.card-pergunta .categoria {
+    font-size: 14px;
+    font-weight: 500;
+    /* Cor do texto secundário */
+    color: #6c757d; 
+    margin: 0;
 }
 
-.card-header .categoria {
-  font-weight: 600;
-  color: #0043ff;
-  font-size: 0.85rem;
-  margin: 0;
-}
-
-.card-header .questao {
-  margin: 0;
-  color: gray;
-  font-size: 0.85rem;
+.card-pergunta .questao {
+    font-size: 14px;
+    /* Cor do texto secundário */
+    color: #6c757d; 
+    margin: 0;
 }
 
 .titulo-pergunta {
-  margin-top: 10px;
-  font-size: 1.1rem;
-  font-weight: 500;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 30px;
+    /* Cor do texto escuro */
+    color: #343a40; 
 }
 
-/* ===== Opções ===== */
+/* --- Opções --- */
 .opcoes {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .opcao {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #e6e6e6;
-  background: #fafafa;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s;
 }
 
 .opcao:hover {
-  background: #f0f8ff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.opcao input {
-  display: none;
+.radio-hidden {
+    display: none; 
 }
 
-.opcao span {
-  margin-left: 8px;
+.opcao-texto {
+    display: flex;
+    align-items: center;
 }
 
+.opcao-icon {
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 20px; 
+    text-align: center;
+}
+
+/* Cores das opções */
 .opcao.selecionado.verde {
-  border-color: #00a650;
-  background: #e6f9ed;
+    /* Cor do sucesso/verde */
+    border-color: #28a745;
+    background-color: #e8f5e9; 
+    /* Cor do sucesso/verde */
+    color: #28a745; 
 }
-
 .opcao.selecionado.laranja {
-  border-color: #ff9800;
-  background: #fff3e0;
+    /* Cor do warning/laranja */
+    border-color: #ffc107;
+    background-color: #fffde7; 
 }
-
 .opcao.selecionado.vermelho {
-  border-color: #f44336;
-  background: #ffebee;
+    /* Cor do danger/vermelho */
+    border-color: #dc3545;
+    background-color: #ffebee; 
 }
 
-/* ===== Botões ===== */
-.botoes-navegacao {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 25px;
+.opcao-icon.verde { 
+    /* Cor do sucesso/verde */
+    color: #28a745; 
+}
+.opcao-icon.laranja { 
+    /* Cor do warning/laranja */
+    color: #ffc107; 
+}
+.opcao-icon.vermelho { 
+    /* Cor do danger/vermelho */
+    color: #dc3545; 
+}
+
+
+/* --- Rodapé de Navegação --- */
+.footer-navegacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
 }
 
 .btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .btn.anterior {
-  background: #f4f4f4;
-  color: #333;
-  border: 1px solid #ccc;
+    /* Cor do card */
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    /* Cor do texto escuro */
+    color: #343a40; 
+}
+.btn.anterior:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .btn.proxima {
-  background: #00a650;
-  color: white;
+    /* Cor do sucesso/verde */
+    background: #28a745;
+    border: none;
+    color: white;
+}
+.btn.proxima.finalizar {
+    /* Cor primária/azul */
+    background: #007bff; 
+}
+.btn.proxima:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
 
-.btn.proxima:hover {
-  background: #009344;
-}
-
-/* ===== Indicadores ===== */
+/* --- Indicadores (Bolinhas) --- */
 .indicadores {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
+    display: flex;
+    gap: 8px;
 }
 
 .bolinha {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ccc;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .bolinha.ativa {
-  background: #0043ff;
+    /* Cor primária/azul */
+    background-color: #007bff; 
 }
 
-/* ===== Responsividade ===== */
-@media (max-width: 768px) {
-  .avaliacao-container {
-    padding: 20px;
-  }
-
-  .avaliacao-header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .card-pergunta {
-    padding: 20px;
-  }
+.bolinha.respondida {
+    /* Cor do sucesso/verde */
+    background-color: #28a745; 
 }
