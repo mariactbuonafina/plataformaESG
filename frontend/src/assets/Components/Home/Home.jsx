@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Home.css";
-import folhaIcon from "../img/folh-inicio.png";
+import folhaIcon from "../img/folha-inicio.png";
 import evidenciaIcon from "../img/evidencia.png";
 import certificadoIcon from "../img/certificado.png";
 import questionarioIcon from "../img/questionario.png";
@@ -11,6 +11,11 @@ import ambIcon from "../img/amb.png"
 
 const Home = () => {
   const [progress, setProgress] = useState(0);
+  const isQuestionarioConcluido = progress >= 60;
+  const handleStartAvaliacao = () => {
+setProgress((prev) => Math.min(prev + 20, 100));
+};
+
 
   return (
     <div className="home-page">
@@ -54,17 +59,17 @@ const Home = () => {
       {/* ======= Categorias ESG ======= */}
       <section className="categories">
         <div className="category green">
-          <img src={govIcon} alt="" />
+          <img src={govIcon} alt="Governança" />
           <h4 className="Gov">Governança</h4>
           <p>Transparência e ética</p>
         </div>
         <div className="category blue">
-          <img src={ambIcon} alt="" />
+          <img src={ambIcon} alt="Ambiental" />
           <h4 className="Amb">Ambiental</h4>
           <p>Sustentabilidade</p>
         </div>
         <div className="category purple">
-          <img src={socIcon} alt="" />
+          <img src={socIcon} alt="Social" />
           <h4 className="Soc">Social</h4>
           <p>Responsabilidade social</p>
         </div>
@@ -87,7 +92,7 @@ const Home = () => {
             Responda perguntas detalhadas sobre governança, meio ambiente e
             responsabilidade social da sua empresa.
           </p>
-          <button className="btn-primary">Começar Avaliação</button>
+          <button className="btn-primary"onClick={handleStartAvaliacao}>Começar Avaliação</button>
         </div>
 
         {/* Card 2 */}
@@ -105,7 +110,7 @@ const Home = () => {
             Faça upload de documentos que comprovem suas práticas sustentáveis e
             de responsabilidade social.
           </p>
-          <button className="btn-disabled" disabled>
+          <button className= {isQuestionarioConcluido ? "btn-primary" : "btn-disabled" } disabled = {!isQuestionarioConcluido}>
             Enviar Documentos
           </button>
           <p className="note">Complete o questionário primeiro para desbloquear</p>
@@ -126,7 +131,7 @@ const Home = () => {
             Gere seu certificado oficial ESG e compartilhe suas conquistas com
             stakeholders.
           </p>
-          <button className="btn-disabled" disabled>
+          <button className= {progress === 100 ? "btn-primary" : "btn-disabled"}  disabled = {progress !== 100}>
             Gerar Certificado
           </button>
           <p className="note">Complete o questionário primeiro para desbloquear</p>
