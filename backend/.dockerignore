@@ -1,9 +1,24 @@
+# Geral
+*.log
+.coverage
+coverage
+.env
+.env.*
+.vscode
+.idea
+
+# Node/Vite/Nest/etc
 node_modules
-npm-debug.log
-Dockerfile
-docker-compose.yml
-.git
-.gitignore
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+.vite
+.cache
 dist
 build
-.next
+
+# Git e docker
+.git
+.gitignore
+Dockerfile
+docker-compose*.yml

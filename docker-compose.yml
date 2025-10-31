@@ -1,55 +1,65 @@
+version: "3.9"
+
 services:
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      args:
-        NODE_ENV: development
-    container_name: esg-backend
-    ports:
-      - "3333:3333"
-    volumes:
-      - ./backend:/app  # permite hot reload
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-      - DB_HOST=db
-      - DB_USER=esg_user
-      - DB_PASS=esg_pass
-      - DB_NAME=esg_db
-      - DB_PORT=5432
-    depends_on:
-      - db
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: esg-frontend
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app  # hot reload
-      - /app/node_modules
-    environment:
-      - VITE_BACKEND_URL=http://localhost:3333
-
-  db: # atualizar dps quando tiver conexao bd real
-    image: postgres:15-alpine  # imagem pequena p download rápido
+  db:
+    image: postgres:15-alpine
     container_name: esg-db
     environment:
-      POSTGRES_USER: esg_user
-      POSTGRES_PASSWORD: esg_pass
-      POSTGRES_DB: esg_db
+      POSTGRES_USER: ${DB_USER:-esg_user}
+      POSTGRES_PASSWORD: ${DB_PASS:-esg_pass}
+      POSTGRES_DB: ${DB_NAME:-esg_db}
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "esg_user"]
+      test: ["CMD", "pg_isready", "-U", "${DB_USER:-esg_user}"]
       interval: 5s
-      retries: 5
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      target: dev
+    container_name: esg-backend
+    environment:
+      NODE_ENV: development
+      DB_HOST: db
+      DB_USER: ${DB_USER:-esg_user}
+      DB_PASS: ${DB_PASS:-esg_pass}
+      DB_NAME: ${DB_NAME:-esg_db}
+      DB_PORT: 5432
+      # Para watchers em bind-mount (se necessário):
+      # CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      target: dev
+    container_name: esg-frontend
+    environment:
+      VITE_BACKEND_URL: http://localhost:3333
+      # Vite precisa aceitar conexões externas dentro do container:
+      VITE_DEV_SERVER_HOST: 0.0.0.0
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    restart: unless-stopped
 
 volumes:
   db_data:
