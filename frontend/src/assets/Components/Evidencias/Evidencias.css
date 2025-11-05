@@ -1,0 +1,355 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #eaf6fb; /* azul bebê */
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh; /* cobre a tela toda */
+}
+/* 2. Barra Superior (Header Bar) */
+.header-bar {
+  width: 100%;
+  max-width: 800px; 
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.title-area {
+  text-align: center;
+  flex-grow: 1; 
+}
+
+.header-bar h1 {
+  position: absolute;
+  display: flex;
+  justify-content: center; /* centraliza na horizontal */
+  align-items: center;     /* centraliza na vertical */
+  top: 10px; /* distância do topo */
+  left: 43%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #171515; /* Texto */
+  margin: 0;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.header-bar p {
+  font-size: 1rem;
+  color: #666666; /* Subtítulo */
+  margin: 0;
+  padding: 15px;
+}
+
+/* 3. Botões Voltar */
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 25rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #0f2232;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.back-button:hover {
+  background-color: #f0f0f0;
+}
+
+.back-button .arrow {
+  margin-right: 5px;
+  font-size: 1.2rem;
+}
+
+/* 4. Card Principal */
+.upload-card {
+  background-color: #ffffff; /* Card Background */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.nuvem {
+  display: inline-flex;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.card-header h2 {
+  font-size: 1.8rem;
+  color: #333333; /* Texto */
+  margin: 0 0 5px 0;
+}
+
+.card-header .subtitle {
+  color: #666666; /* Subtítulo */
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 5. Área de Drop (Upload) */
+.drop-area {
+  border: 2px dashed #e0e0e0; /* Cor da Borda */
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  margin-bottom: 30px;
+}
+
+.drop-area:hover,
+.drop-area.drag-over {
+  border-color: #00bcd4; /* Cor de arrastar (drag-border) */
+  background-color: #f8fcfd;
+}
+
+.upload-icon {
+  color: #666666; /* Subtítulo */
+  margin-bottom: 10px;
+}
+
+.drag-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333333; /* Texto */
+  margin: 5px 0 2px 0;
+}
+
+.click-text {
+  font-size: 1rem;
+  color: #666666; /* Subtítulo */
+  margin: 0 0 15px 0;
+}
+
+.file-types-info {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #666666; /* Subtítulo */
+}
+
+.file-types-info span {
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0; /* Cor da Borda */
+}
+
+.file-types-info .size-limit {
+  border: none;
+  font-weight: 600;
+}
+
+
+/* 6. Documentos Sugeridos */
+.suggested-docs {
+  background-color: #f3f6ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.suggested-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.doc-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  color: #111e1a; /* Cor Primária (Verde) */
+}
+
+.suggested-docs h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #191b1f; /* Texto */
+  margin: 0;
+}
+
+.docs-list {
+  display: flex;
+  flex-wrap: wrap;
+  column-count: 3;
+  gap: 10px;
+}
+
+.doc-item {
+  width: calc(33.33% - 10px); 
+  font-size: 0.95rem;
+  color: #204298; /* Subtítulo */
+  line-height: 1.6;
+}
+
+/* 7. Barra Inferior (Footer Bar) */
+.footer-bar {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.footer-bar .secondary {
+  color: #333333; /* Texto */
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.finish-upload-button {
+  background: linear-gradient(135deg, #16a34a, #22c55e);;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-weight: 600;
+  position: absolute;
+  right: 400px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.finish-upload-button:hover {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  transform: scale(1.03);
+  
+}
+
+/* 8. Estilos para Arquivos Enviados (Com Botão de Excluir) */
+.uploaded-files-section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.uploaded-files-section h3 {
+  font-size: 1.2rem;
+  color: #333333; /* Texto */
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Alterar o file-item para usar 'space-between' (Mantido) */
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 8px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-details-group {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.file-icon {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: #00bcd4; /* Cor azul para o ícone do documento */
+}
+
+.file-name {
+  font-weight: 500;
+  color: #333333; /* Texto */
+  margin-right: 10px; 
+}
+
+.file-size {
+  font-size: 0.85rem;
+  color: #666666; /* Subtítulo */
+  margin-right: 15px;
+}
+
+.file-status {
+  color: #20c997; /* Cor Primária (Verde) */
+  font-weight: bold;
+}
+
+/* Botão de Excluir (Mantido) */
+.delete-button {
+  background: none;
+  border: none;
+  color: #dc3545; 
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  background-color: #f8d7da; 
+  color: #c82333; 
+}
+
+.arquivos-info {
+    font-size: 0.9rem;
+    color: #666666; /* Subtítulo */
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* Responsividade (Ajustes para telas menores) */
+@media (max-width: 768px) {
+  .upload-card {
+    padding: 20px;
+  }
+  
+  .docs-list {
+    column-count: 1;
+    display: block;
+  }
+  
+  .doc-item {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .file-types-info {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .file-types-info span {
+    flex-basis: auto;
+  }
+}
