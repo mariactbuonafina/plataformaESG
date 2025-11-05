@@ -1,9 +1,43 @@
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.left-side {
+  flex: 1;
+  padding: 40px;
+}
+
+.logo {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.logo span {
+  color :#16a34a
+}
+
+.feature {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.cta {
+
+  margin-top: 16px;
+  color: #555
+}
+
 .right-side {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+
 
 .login-card {
   background: #fff;
@@ -97,3 +131,4 @@
   color: #2563eb;
   text-decoration: none;
 }
+
