@@ -1,4 +1,4 @@
-# ---- base ----
+# base
 FROM node:20-slim AS base
 WORKDIR /app
 ENV NODE_ENV=production
@@ -6,18 +6,19 @@ ENV NODE_ENV=production
 RUN apt-get update && apt-get install -y tini && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
-# ---- dependencies (dev) ----
+# dependencies (dev)
 FROM base AS deps-dev
 ENV NODE_ENV=development
 COPY package*.json ./
 RUN npm install
 
-# ---- dev runtime ----
+# dev runtime 
 FROM base AS dev
 ENV NODE_ENV=development
 WORKDIR /app
-USER node
 COPY --chown=node:node . .
 COPY --from=deps-dev /app/node_modules ./node_modules
-EXPOSE 3333
-CMD ["npm", "run", "dev"] 
+RUN chown -R node:node /app 
+USER node
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
