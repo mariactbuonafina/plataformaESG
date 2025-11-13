@@ -1,6 +1,7 @@
+import {useNavigate} from 'react-router-dom';
 import React, { useState, useCallback } from 'react';
 import "../components/Evidencias.css";
-import { Cloud, Upload, Check, X } from 'lucide-react'; 
+import { Upload, Check, X } from 'lucide-react'; 
 import nuvemIcon from "../assets/nuvem.png";
 
 const UploadedFilesList = ({ files, onDelete }) => {
@@ -36,6 +37,12 @@ const UploadedFilesList = ({ files, onDelete }) => {
 };
 
 const ESGEvidenciasUpload = () => {
+  const navigate = useNavigate ();
+  
+  const handleBack = () => {
+  navigate (-1);  
+  };
+
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
@@ -45,14 +52,22 @@ const ESGEvidenciasUpload = () => {
     handleFiles(files);
   };
 
-  const handleFiles = (files) => {
-    const newFiles = files.map(file => ({
-      name: file.name,
-      size: file.size,
-    }));
-    setUploadedFiles(prev => [...prev, ...newFiles]);
-  };
+  const MAX_SIZE_MB = 10;
 
+const handleFiles = (files) => {
+const validFiles = [];
+
+files.forEach(file => {
+const sizeMB = file.size / 1024 / 1024;
+if (sizeMB <= MAX_SIZE_MB) {
+validFiles.push({ name: file.name, size: file.size });
+} else {
+alert(`O arquivo ${file.name} excede o limite de ${MAX_SIZE_MB}MB.`);
+}
+});
+
+setUploadedFiles(prev => [...prev, ...validFiles]);
+};
   // FUNÇÃO: Lógica para deletar um arquivo
   const handleDeleteFile = useCallback((fileIndexToDelete) => {
     // Filtra a lista, mantendo apenas os arquivos cujo índice NÃO é o índice a ser excluído
@@ -97,7 +112,7 @@ const ESGEvidenciasUpload = () => {
   return (
     <div className="app-container">
       <div className="header-bar">
-        <button className="back-button">
+        <button className="back-button" onClick={handleBack}>
           <span className="arrow">←</span> Voltar
         </button>
         <div className="title-area">
@@ -124,6 +139,9 @@ const ESGEvidenciasUpload = () => {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={handleAreaClick}
+          role= "button"
+          tabIndex={0}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === "") && handleAreaClick()}
         >
             {/* ... Drop Area Input e Textos mantidos ... */}
             <input
