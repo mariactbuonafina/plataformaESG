@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "cross-env NODE_ENV=development nodemon backend/src/app.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/app.js",
     "test": "cross-env NODE_ENV=production node backend/src/app.js"
   },
   "keywords": [],
