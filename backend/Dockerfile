@@ -14,4 +14,5 @@ EXPOSE 3333
 
 ENV NODE_ENV $NODE_ENV
 
-CMD ["sh", "-c", "if [ \"$NODE_ENV\" = 'production' ]; then npm start; else npm run dev; fi"]
+# Wait for database to be ready
+CMD ["sh", "-c", "sleep 10 && if [ \"$NODE_ENV\" = 'production' ]; then npm start; else npm run dev; fi"]
