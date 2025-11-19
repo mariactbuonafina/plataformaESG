@@ -77,17 +77,64 @@ O projeto simula um ambiente real de desenvolvimento, com:
 - `POST /evidences` → enviar evidências  
 - `GET /seals/:userId` → obter selo ESG do usuário
 
----
+## Como Rodar a Aplicação
 
-## Docker
-- Backend e Frontend containerizados  
-- `docker-compose.yml` orquestra banco, backend e frontend  
-- Volume do Postgres persiste dados entre reinícios  
-- Comando para subir tudo:
-  ```bash
-  docker compose up --build
+### Usando Docker Compose (Recomendado)
 
----
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/mariactbuonafina/plataformaESG.git
+   cd plataformaESG
+   ```
+
+2. **Suba os containers:**
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Acesse a aplicação:**
+   - Frontend: http://localhost
+   - Backend: http://localhost:3333
+   - Banco: localhost:5432
+
+### Login
+- **Usuário:** admin@empresa.com
+- **Senha:** digital@123
+
+A senha é criptografada usando bcrypt e o login utiliza JWT para autenticação segura.
+
+### Desenvolvimento Local
+
+1. **Backend:**
+   ```bash
+   cd backend
+   npm install
+   npm run dev
+   ```
+
+2. **Frontend:**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+3. **Banco:**
+   Configure PostgreSQL localmente ou use Docker.
+
+## Autenticação e Segurança
+
+- **Criptografia de Senha:** Utiliza bcrypt com salt rounds de 10.
+- **JWT:** Tokens de autenticação com expiração de 1 hora.
+- **Middleware de Autenticação:** Protege rotas sensíveis.
+
+## Melhorias Implementadas
+
+- Adicionado sistema de autenticação seguro.
+- Integração frontend-backend para login.
+- Containerização completa com Docker Compose.
+- Banco de dados PostgreSQL com script de inicialização.
+- Uso de melhores práticas de segurança (criptografia, JWT).
 
 ## 🔹 Seção: Boas Práticas
 
