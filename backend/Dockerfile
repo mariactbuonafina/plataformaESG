@@ -20,4 +20,10 @@ USER node
 COPY --chown=node:node . .
 COPY --from=deps-dev /app/node_modules ./node_modules
 EXPOSE 3333
-CMD ["npm", "run", "dev"] 
+
+
+ENV NODE_ENV $NODE_ENV
+
+# Wait for database to be ready
+CMD ["sh", "-c", "sleep 10 && if [ \"$NODE_ENV\" = 'production' ]; then npm start; else npm run dev; fi"]
+

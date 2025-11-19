@@ -2,17 +2,27 @@
 
 import { FaUser, FaLock } from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  // API URL - sempre localhost para desenvolvimento local
+  const apiUrl = 'http://localhost:3333';
+  
+  console.log('Debug API URL:');
+  console.log('Hostname:', window.location.hostname);
+  console.log('Origin:', window.location.origin);
+  console.log('apiUrl:', apiUrl);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('https://scary-casket-97jjvjg76p5w37qp7-3333.app.github.dev/login', {
+      const response = await fetch(`${apiUrl}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -25,7 +35,7 @@ const Login = () => {
       if (response.ok && data.success) {
         alert("Login realizado com sucesso!");
         localStorage.setItem("user", JSON.stringify(data.user));
-         window.location.href= "/Home"; // redirecionamento
+        navigate("/Home"); // redirecionamento usando React Router
       } else {
         alert(data.message || "Usuário ou senha inválidos");
       }

@@ -3,12 +3,42 @@ import "./Login.css";
 
 const Login = () => { 
   const[username, setUsername] = useState(""); 
-  const[password, setPassoword] = useState("");
+  const[password, setPassword] = useState("");
+  const[message, setMessage] = useState("");
 
-   const handleSubmit = (event) => { event.preventDefault();
+  // API URL - sempre localhost para desenvolvimento local
+  const apiUrl = 'http://localhost:3333';
   
+  console.log('Debug API URL:');
+  console.log('Hostname:', window.location.hostname);
+  console.log('Origin:', window.location.origin);
+  console.log('apiUrl:', apiUrl);
 
-     alert("Enviando os dados: " + username + " - " + password);
+   const handleSubmit = async (event) => { 
+     event.preventDefault();
+     
+     try {
+       const response = await fetch(`${apiUrl}/login`, {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({ username, password }),
+       });
+       
+       const data = await response.json();
+       
+       if (data.success) {
+         localStorage.setItem('token', data.token);
+         localStorage.setItem('user', JSON.stringify(data.user));
+         alert('Login realizado com sucesso!');
+         // Redirecionar para a página principal ou dashboard
+       } else {
+         setMessage(data.message);
+       }
+     } catch (error) {
+       setMessage('Erro ao fazer login');
+     }
      }; 
 
      return (
@@ -57,10 +87,12 @@ const Login = () => {
 
          <div> 
            <div className="input-container">
-          <input type="password" placeholder='Sua senha' onChange={(e) => setPassoword(e.target.value)}/>
+          <input type="password" placeholder='Sua senha' onChange={(e) => setPassword(e.target.value)}/>
            <FaLock className="icon" /> 
            </div> 
           </div>
+
+          {message && <p style={{color: 'red'}}>{message}</p>}
 
            <button type="submit" className="btn-login">Entrar</button>
           <a href="#" className="forgot-password">Esqueceu a senha?</a>

@@ -1,24 +1,23 @@
-# base
-FROM node:20-slim AS base
+FROM node:22-alpine AS build
+
 WORKDIR /app
-ENV NODE_ENV=production
 
-RUN apt-get update && apt-get install -y tini && rm -rf /var/lib/apt/lists/*
-ENTRYPOINT ["/usr/bin/tini", "--"]
+COPY frontend/package*.json ./
 
-# dependencies (dev)
-FROM base AS deps-dev
-ENV NODE_ENV=development
-COPY package*.json ./
 RUN npm install
 
-# dev runtime 
-FROM base AS dev
-ENV NODE_ENV=development
-WORKDIR /app
-COPY --chown=node:node . .
-COPY --from=deps-dev /app/node_modules ./node_modules
-RUN chown -R node:node /app 
-USER node
-EXPOSE 5173
-CMD ["npm", "run", "dev"]
+COPY frontend/ .
+
+RUN npm run build
+
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Modificar configuração nginx padrão para SPA
+RUN sed -i 's|try_files \$uri \$uri/ =404;|try_files \$uri \$uri/ /index.html;|g' /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+

@@ -1,62 +1,43 @@
+version: '3.8'
+
 services:
   db:
     image: postgres:15-alpine
-    container_name: esg-db
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_DB: esg_db
+      POSTGRES_USER: esg_user
+      POSTGRES_PASSWORD: esg_pass
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./database/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
-    restart: unless-stopped
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
     build:
-      context: ./backend
-      target: dev
-    container_name: esg-backend
+      context: .
+      dockerfile: backend/Dockerfile
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
       DB_HOST: db
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
-      DB_NAME: ${DB_NAME}
-      DB_PORT: ${DB_PORT}
-      PORT: ${BACKEND_PORT}
+      DB_PORT: 5432
+      DB_NAME: esg_db
+      DB_USER: esg_user
+      DB_PASS: esg_pass
+      JWT_SECRET: minha_chave_secreta_jwt_super_segura
     ports:
-      - "${BACKEND_PORT}:3333"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
+      - "3333:3333"
     depends_on:
-      db:
-        condition: service_healthy
-    restart: unless-stopped
+      - db
 
   frontend:
     build:
-      context: ./frontend
-      target: dev
-    container_name: esg-frontend
-    environment:
-      VITE_BACKEND_URL: http://esg-backend:3333
-      VITE_DEV_SERVER_HOST: 0.0.0.0
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - "80:80"
     depends_on:
       - backend
-    restart: unless-stopped
 
 volumes:
-  db_data:
+  postgres_data:
