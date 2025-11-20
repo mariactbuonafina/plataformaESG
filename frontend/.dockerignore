@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-node_modules
-=======
 # Geral
 *.log
 .coverage
@@ -25,4 +22,3 @@ build
 .gitignore
 Dockerfile
 docker-compose*.yml
->>>>>>> 345ab443f55dc387622fc8db5c44ac0e2bb2071a

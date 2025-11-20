@@ -1,0 +1,84 @@
+/* Layout principal */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: auto;
+  margin: 0 auto;
+  padding: 0 20px;
+  background: linear-gradient(to right, #f5fdff, #ecfeff);
+  font-family: Arial, sans-serif;
+}
+.logo .p {
+  font-size: 20px;
+}
+/* Lado esquerdo */
+
+.left-side {
+  flex: 1.2;
+  padding: 70px 100px;
+  display: flex;
+  flex-direction: column;  /* Organiza em coluna */
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: flex-start; /* Mantém alinhado à esquerda */
+  color: #333;
+}
+
+/* Logo e título */
+.left-side .logo {
+  display: flex;
+  align-items: center; /* Ícone + texto alinhados */
+  font-size: 40px;
+  font-weight: bold;
+  color: #16a34a;
+  margin-bottom: 20px;
+}
+
+.left-side .logo span {
+  color: #0ea5e9;
+  margin-left: 10px;
+}
+
+.left-side .logo img {
+  width: 80px;
+  margin-right: 10px;
+}
+
+/* Features */
+.feature {
+  display: flex;
+  align-items: flex-start; /* Ícone alinha no topo */
+  gap: 10px; /* Espaço entre ícone e texto */
+  margin: 20px 0;
+}
+
+.feature .icon {
+  font-size: 28px;
+  min-width: 28px; /* garante alinhamento vertical */
+  text-align: center;
+  margin-top: 2px; /* ajusta para centralizar melhor */
+}
+
+.feature div {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature strong {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.feature p {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+}
+
+/* CTA */
+.cta {
+  margin-top:20px;
+  font-size: 15px;
+  
+}

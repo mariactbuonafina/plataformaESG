@@ -1,6 +1,10 @@
 # Plataforma ESG
 
+<<<<<<< HEAD
 ![Node.js](https://img.shields.io/badge/Node.js-v18.x-green)
+=======
+![Node.js](https://img.shields.io/badge/Node.js-v19.x-green)
+>>>>>>> 345ab443f55dc387622fc8db5c44ac0e2bb2071a
 ![Express](https://img.shields.io/badge/Express-4.x-blue)
 ![React](https://img.shields.io/badge/React-18-blueviolet)
 ![Docker](https://img.shields.io/badge/Docker-20.10-blue)
@@ -46,7 +50,11 @@ O projeto simula um ambiente real de desenvolvimento, com:
 ```plataformaESG/
 ├─ backend/ # API Node.js
 │ ├─ src/
+<<<<<<< HEAD
 │ │ ├─ index.js
+=======
+│ │ ├─ app.js
+>>>>>>> 345ab443f55dc387622fc8db5c44ac0e2bb2071a
 │ │ └─ db.js
 │ ├─ package.json
 │ └─ Dockerfile
@@ -62,7 +70,11 @@ O projeto simula um ambiente real de desenvolvimento, com:
 ---
 
 ## Pré-requisitos
+<<<<<<< HEAD
 - Node.js 18 ou superior  
+=======
+- Node.js 19 ou superior  
+>>>>>>> 345ab443f55dc387622fc8db5c44ac0e2bb2071a
 - npm 9 ou superior  
 - Docker 20.10+  
 - PostgreSQL 15 (opcional se usar Docker)  
@@ -70,6 +82,7 @@ O projeto simula um ambiente real de desenvolvimento, com:
 
 ---
 
+<<<<<<< HEAD
 ## Rotas da API
 
 ### Autenticação
@@ -208,6 +221,73 @@ curl -X POST http://localhost:3333/api/auth/login \
 ```
 
 ---
+=======
+## Rotas Principais do Backend
+- `GET /ping` → teste da API  
+- `GET /users` → lista de usuários (mock se banco não estiver pronto)  
+- `POST /responses` → enviar respostas do questionário  
+- `POST /evidences` → enviar evidências  
+- `GET /seals/:userId` → obter selo ESG do usuário
+
+## Como Rodar a Aplicação
+
+### Usando Docker Compose (Recomendado)
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/mariactbuonafina/plataformaESG.git
+   cd plataformaESG
+   ```
+
+2. **Suba os containers:**
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Acesse a aplicação:**
+   - Frontend: http://localhost
+   - Backend: http://localhost:3333
+   - Banco: localhost:5432
+
+### Login
+- **Usuário:** admin@empresa.com
+- **Senha:** digital@123
+
+A senha é criptografada usando bcrypt e o login utiliza JWT para autenticação segura.
+
+### Desenvolvimento Local
+
+1. **Backend:**
+   ```bash
+   cd backend
+   npm install
+   npm run dev
+   ```
+
+2. **Frontend:**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+3. **Banco:**
+   Configure PostgreSQL localmente ou use Docker.
+
+## Autenticação e Segurança
+
+- **Criptografia de Senha:** Utiliza bcrypt com salt rounds de 10.
+- **JWT:** Tokens de autenticação com expiração de 1 hora.
+- **Middleware de Autenticação:** Protege rotas sensíveis.
+
+## Melhorias Implementadas
+
+- Adicionado sistema de autenticação seguro.
+- Integração frontend-backend para login.
+- Containerização completa com Docker Compose.
+- Banco de dados PostgreSQL com script de inicialização.
+- Uso de melhores práticas de segurança (criptografia, JWT).
+>>>>>>> 345ab443f55dc387622fc8db5c44ac0e2bb2071a
 
 ## 🔹 Seção: Boas Práticas
 
