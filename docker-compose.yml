@@ -1,43 +1,80 @@
-version: '3.8'
+# Versão 3.9 do Docker Compose
+version: '3.9'
 
+# --- INÍCIO DOS SERVIÇOS ---
 services:
+
+  # 1. SERVIÇO DE BANCO DE DADOS (PostgreSQL)
+  # Este serviço se chamará 'db' dentro da rede do Docker
   db:
-    image: postgres:15-alpine
+    image: postgres:14-alpine
+    container_name: esg_db
+    restart: unless-stopped
     environment:
-      POSTGRES_DB: esg_db
+      # Você pode mudar esses valores se quiser
       POSTGRES_USER: esg_user
-      POSTGRES_PASSWORD: esg_pass
+      POSTGRES_PASSWORD: esg_password
+      POSTGRES_DB: esg_db
     ports:
+      # Mapeia a porta 5432 do seu PC para a porta 5432 do container
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # Esta linha garante que seus dados do banco não sumam
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      # Conecta este serviço à nossa rede interna
+      - plataforma-esg-network
 
-  backend:
+  # 2. SERVIÇO DE BACKEND (API)
+  # Este serviço se chamará 'api_esg' dentro da rede
+  api_esg:
+    container_name: esg_api
+    restart: unless-stopped
     build:
-      context: .
-      dockerfile: backend/Dockerfile
-    environment:
-      NODE_ENV: production
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_NAME: esg_db
-      DB_USER: esg_user
-      DB_PASS: esg_pass
-      JWT_SECRET: minha_chave_secreta_jwt_super_segura
+      # --- ESTA É A CORREÇÃO PRINCIPAL ---
+      # Diz ao Docker para entrar na pasta 'backend' e procurar o Dockerfile lá
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - "3333:3333"
+      # Mapeia a porta 3333 do seu PC para a porta 3333 do container
+      - "3333:3333" # Mude a porta 3333 se o seu backend usar outra
+    networks:
+      - plataforma-esg-network
     depends_on:
+      # Garante que o 'db' suba ANTES do 'api_esg'
       - db
+    environment:
+      # --- ESTA É A CORREÇÃO DE CONEXÃO ---
+      # Força o backend a se conectar ao serviço 'db', e não 'localhost'
+      DATABASE_URL: postgresql://esg_user:esg_password@db:5432/esg_db
 
+  # 3. SERVIÇO DE FRONTEND
+  # Este serviço se chamará 'frontend' dentro da rede
   frontend:
+    container_name: esg_frontend
+    restart: unless-stopped
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
+      # --- ESTA É A CORREÇÃO PRINCIPAL ---
+      # Diz ao Docker para entrar na pasta 'frontend' e procurar o Dockerfile lá
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "80:80"
+      # Mapeia a porta 5173 do seu PC para a porta 5173 do container (Vite)
+      - "5173:5173"
+    networks:
+      - plataforma-esg-network
     depends_on:
-      - backend
+      # Garante que o 'api_esg' suba ANTES do 'frontend'
+      - api_esg
 
+# --- FIM DOS SERVIÇOS ---
+
+# Define o volume que será usado pelo 'db'
 volumes:
-  postgres_data:
+  postgres-data:
+    driver: local
+
+# Define a rede interna que todos os serviços usarão
+networks:
+  plataforma-esg-network:
+    driver: bridge
