@@ -31,11 +31,20 @@ services:
       DB_NAME: ${DB_NAME}
       DB_PORT: ${DB_PORT}
       PORT: ${BACKEND_PORT}
+
+      CRYPTO_KEY: ${CRYPTO_KEY}
+      CRYPTO_IV: ${CRYPTO_IV}
+
+      ADMIN_NAME: ${ADMIN_NAME}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASS: ${ADMIN_PASS}
+      ADMIN_CPF: ${ADMIN_CPF}
+      ADMIN_COMPANY: ${ADMIN_COMPANY}
+
     ports:
       - "${BACKEND_PORT}:3333"
     volumes:
-      - ./backend:/app
-      - /app/node_modules
+      - ./backend:/app:delegated
     depends_on:
       db:
         condition: service_healthy
@@ -47,13 +56,12 @@ services:
       target: dev
     container_name: esg-frontend
     environment:
-      VITE_BACKEND_URL: http://esg-backend:3333
+      VITE_BACKEND_URL: http://localhost:${BACKEND_PORT}
       VITE_DEV_SERVER_HOST: 0.0.0.0
     ports:
       - "5173:5173"
     volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - ./frontend:/app:delegated
     depends_on:
       - backend
     restart: unless-stopped

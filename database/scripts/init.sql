@@ -1,80 +1,95 @@
--- 1. CRIAÇÃO DO BANCO DE DADOS (somente se for executado fora do banco principal)
--- ao usar Docker Compose com POSTGRES_DB=plataformaESG,
--- o banco já é criado automaticamente pelo container.
--- então, esta parte é opcional e pode ser omitida no Docker.
+--  sequences
+CREATE SEQUENCE IF NOT EXISTS public.empresas_id_seq INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+ALTER SEQUENCE public.empresas_id_seq OWNER TO CURRENT_USER;
 
--- ============================================================
--- CREATE DATABASE "plataformaESG"
---     WITH
---     OWNER = postgres
---     ENCODING = 'UTF8'
---     LC_COLLATE = 'pt_BR.UTF-8'
---     LC_CTYPE = 'pt_BR.UTF-8'
---     TABLESPACE = pg_default
---     CONNECTION LIMIT = -1
---     IS_TEMPLATE = False;
--- ============================================================
+CREATE SEQUENCE IF NOT EXISTS public.usuarios_id_seq INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+ALTER SEQUENCE public.usuarios_id_seq OWNER TO CURRENT_USER;
 
--- Conecta ao banco principal (caso necessário)
--- \connect plataformaESG;
+CREATE SEQUENCE IF NOT EXISTS public.indicadores_sociais_id_seq INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+ALTER SEQUENCE public.indicadores_sociais_id_seq OWNER TO CURRENT_USER;
 
+CREATE SEQUENCE IF NOT EXISTS public.indicadores_ambientais_id_seq INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+ALTER SEQUENCE public.indicadores_ambientais_id_seq OWNER TO CURRENT_USER;
 
--- 2. TABELA DE USUÁRIOS
+CREATE SEQUENCE IF NOT EXISTS public.indicadores_governanca_id_seq INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+ALTER SEQUENCE public.indicadores_governanca_id_seq OWNER TO CURRENT_USER;
 
+-- tabela empresas
+
+CREATE TABLE IF NOT EXISTS public.empresas (
+    id integer NOT NULL DEFAULT nextval('empresas_id_seq'::regclass),
+    nome_fantasia varchar(255) NOT NULL,
+    razao_social varchar(255),
+    cnpj varchar(18) UNIQUE,
+    segmento varchar(100),
+    criado_em timestamp DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT empresas_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE public.empresas OWNER TO CURRENT_USER;
+
+--  tabela usuários
 CREATE TABLE IF NOT EXISTS public.usuarios (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100),
-    senha_hash TEXT NOT NULL,
-    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    email_encrypted BYTEA,
-    cpf_encrypted BYTEA
+    id integer NOT NULL DEFAULT nextval('usuarios_id_seq'::regclass),
+    nome varchar(100),
+    senha_hash text NOT NULL,
+    criado_em timestamp DEFAULT CURRENT_TIMESTAMP,
+    email_encrypted bytea,
+    cpf_encrypted bytea,
+    empresa_id integer,
+    CONSTRAINT usuarios_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_empresa FOREIGN KEY (empresa_id)
+        REFERENCES public.empresas (id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
 );
 
 ALTER TABLE public.usuarios OWNER TO CURRENT_USER;
 
--- 3. TABELA DE INDICADORES SOCIAIS
-
+--  indicadores sociais
 CREATE TABLE IF NOT EXISTS public.indicadores_sociais (
-    id SERIAL PRIMARY KEY,
-    usuario_id INTEGER REFERENCES public.usuarios (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    diversidade_funcional NUMERIC(5,2),
-    horas_treinamento NUMERIC(10,2),
-    projetos_comunitarios TEXT,
-    periodo DATE
+    id integer NOT NULL DEFAULT nextval('indicadores_sociais_id_seq'::regclass),
+    empresa_id integer,
+    diversidade_funcional numeric(5,2),
+    horas_treinamento numeric(10,2),
+    projetos_comunitarios text,
+    periodo date,
+    CONSTRAINT indicadores_sociais_pkey PRIMARY KEY (id),
+    CONSTRAINT indicadores_sociais_empresa_id_fkey FOREIGN KEY (empresa_id)
+        REFERENCES public.empresas (id)
+        ON DELETE CASCADE
 );
 
 ALTER TABLE public.indicadores_sociais OWNER TO CURRENT_USER;
 
--- 4. TABELA DE INDICADORES DE GOVERNANÇA
-
-CREATE TABLE IF NOT EXISTS public.indicadores_governanca (
-    id SERIAL PRIMARY KEY,
-    usuario_id INTEGER REFERENCES public.usuarios (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    politicas_anticorrupcao BOOLEAN,
-    transparencia_relatorios BOOLEAN,
-    conselho_diverso BOOLEAN,
-    periodo DATE
-);
-
-ALTER TABLE public.indicadores_governanca OWNER TO CURRENT_USER;
-
--- 5. TABELA DE INDICADORES AMBIENTAIS
-
+--  indicadores ambientais
 CREATE TABLE IF NOT EXISTS public.indicadores_ambientais (
-    id SERIAL PRIMARY KEY,
-    usuario_id INTEGER REFERENCES public.usuarios (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    emissao_co2 NUMERIC(10,2),
-    consumo_agua NUMERIC(10,2),
-    energia_renovavel NUMERIC(5,2),
-    periodo DATE
+    id integer NOT NULL DEFAULT nextval('indicadores_ambientais_id_seq'::regclass),
+    empresa_id integer,
+    emissao_co2 numeric(10,2),
+    consumo_agua numeric(10,2),
+    energia_renovavel numeric(5,2),
+    periodo date,
+    CONSTRAINT indicadores_ambientais_pkey PRIMARY KEY (id),
+    CONSTRAINT indicadores_ambientais_empresa_id_fkey FOREIGN KEY (empresa_id)
+        REFERENCES public.empresas (id)
+        ON DELETE CASCADE
 );
 
 ALTER TABLE public.indicadores_ambientais OWNER TO CURRENT_USER;
 
--- 6. INSERÇÃO OPCIONAL DE DADOS INICIAIS (para teste)
+--  indicadores governança
+CREATE TABLE IF NOT EXISTS public.indicadores_governanca (
+    id integer NOT NULL DEFAULT nextval('indicadores_governanca_id_seq'::regclass),
+    empresa_id integer,
+    politicas_anticorrupcao boolean,
+    transparencia_relatorios boolean,
+    conselho_diverso boolean,
+    periodo date,
+    CONSTRAINT indicadores_governanca_pkey PRIMARY KEY (id),
+    CONSTRAINT indicadores_governanca_empresa_id_fkey FOREIGN KEY (empresa_id)
+        REFERENCES public.empresas (id)
+        ON DELETE CASCADE
+);
 
-INSERT INTO public.usuarios (nome, senha_hash)
-VALUES
-('Administrador ESG', 'hash_teste_123'),
-('Usuário Exemplo', 'hash_teste_456')
-ON CONFLICT DO NOTHING;
+ALTER TABLE public.indicadores_governanca OWNER TO CURRENT_USER;
