@@ -1,0 +1,52 @@
+.resultado-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 25px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.selo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+
+.selo.bronze {
+  background: #b87333;
+}
+
+.selo.prata {
+  background: #c0c0c0;
+}
+
+.selo.ouro {
+  background: #ffd700;
+}
+
+.descricao-selo {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.btn-voltar {
+  margin-top: 25px;
+  padding: 12px 20px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-voltar:hover {
+  background: #1976d2;
+}
