@@ -1,19 +1,16 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "API ESG para questionários, evidências e selos",
+  "description": "API ESG",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "cross-env NODE_ENV=development nodemon src/app.js",
-    "test": "cross-env NODE_ENV=production node backend/src/app.js"
+    "dev": "cross-env NODE_ENV=development nodemon src/app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3"

@@ -89,7 +89,7 @@ O projeto simula um ambiente real de desenvolvimento, com:
 
 2. **Suba os containers:**
    ```bash
-   docker-compose up --build
+   
    ```
 
 3. **Acesse a aplicação:**
