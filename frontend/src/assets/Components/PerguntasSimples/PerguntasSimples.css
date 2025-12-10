@@ -1,0 +1,81 @@
+/* Container geral */
+.container-simples {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Título */
+.container-simples h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #2b4c7e;
+}
+
+/* Card da pergunta */
+.card-simples {
+  background: #f7f9fc;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #2b4c7e;
+}
+
+/* Texto da pergunta */
+.texto-pergunta {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Lista de opções */
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Cada opção */
+.opcao-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* Botão */
+.btn-enviar {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  background: #2b4c7e;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-enviar:hover {
+  background: #1f3a63;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .container-simples {
+    padding: 15px;
+  }
+
+  .card-simples {
+    padding: 12px;
+  }
+}
