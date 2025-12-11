@@ -1,0 +1,287 @@
+.upload-evidencias-container {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.upload-evidencias-container h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+/* Área de Drop Zone */
+.drop-zone {
+  border: 2px dashed #3498db;
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  background: #ecf0f1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.drop-zone:hover {
+  background: #d5dbdb;
+  border-color: #2980b9;
+}
+
+.drop-zone.dragover {
+  background: #bdc3c7;
+  border-color: #2980b9;
+}
+
+.drop-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.drop-icon {
+  font-size: 48px;
+  display: block;
+}
+
+.drop-zone p {
+  margin: 0;
+  color: #555;
+  font-size: 1.1em;
+}
+
+.drop-zone .or-text {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.btn-select {
+  padding: 10px 24px;
+  background: #3498db;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-select:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Arquivos Selecionados */
+.selected-files {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.selected-files h3 {
+  color: #2c3e50;
+  margin-top: 0;
+}
+
+.selected-files ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.selected-files li {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.file-icon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.file-name {
+  flex: 1;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.file-size {
+  color: #7f8c8d;
+  font-size: 0.9em;
+  margin-right: 12px;
+}
+
+.btn-remove {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-remove:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+.btn-upload {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-upload:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+.btn-upload:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Documentos Sugeridos */
+.suggested-documents {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.suggested-documents h3 {
+  color: #2c3e50;
+  margin-top: 0;
+}
+
+.document-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.category {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 4px solid #9b59b6;
+}
+
+.category h4 {
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+}
+
+.category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.category input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.category label {
+  cursor: pointer;
+  color: #555;
+  font-size: 0.95em;
+}
+
+/* Arquivos Carregados */
+.uploaded-files {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.uploaded-files h3 {
+  color: #2c3e50;
+  margin-top: 0;
+}
+
+.file-list {
+  display: grid;
+  gap: 10px;
+}
+
+.uploaded-file {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 5px;
+  border-left: 4px solid #2ecc71;
+}
+
+.uploaded-file .file-icon {
+  color: #2ecc71;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.file-info {
+  flex: 1;
+}
+
+.file-info .file-name {
+  margin: 0;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.file-info .file-date {
+  margin: 5px 0 0 0;
+  color: #7f8c8d;
+  font-size: 0.85em;
+}
+
+.uploaded-file .file-size {
+  color: #7f8c8d;
+  font-size: 0.9em;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .document-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .drop-zone {
+    padding: 30px 15px;
+  }
+
+  .selected-files li {
+    flex-wrap: wrap;
+  }
+}

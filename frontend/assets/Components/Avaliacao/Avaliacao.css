@@ -1,0 +1,281 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Fundo geral azul claro */
+    background-color: #f0f8ff; 
+}
+
+.avaliacao-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Cabeçalho --- */
+.avaliacao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.btn-voltar {
+    /* Cor do card */
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    /* Cor do texto escuro */
+    color: #343a40; 
+}
+
+.titulo {
+    text-align: center;
+}
+
+.titulo h2 {
+    font-size: 24px;
+    margin: 0;
+    /* Cor do texto escuro */
+    color: #343a40; 
+}
+
+.titulo p {
+    font-size: 14px;
+    /* Cor do texto secundário */
+    color: #6c757d; 
+    margin: 5px 0 0;
+}
+
+.progresso-geral {
+    font-size: 28px;
+    font-weight: bold;
+    /* Cor do sucesso/verde */
+    color: #28a745; 
+}
+
+/* --- Card de Progresso (Barra) --- */
+.progresso-card {
+    /* Cor do card */
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.progresso-card .card-titulo {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.barra-container {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.barra-segmento-preenchido {
+    height: 100%;
+    /* Cor do progresso inicial / sucesso */
+    background-color: #28a745; 
+    transition: width 0.3s;
+}
+
+.categorias {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    /* Cor do texto secundário */
+    color: #6c757d; 
+}
+
+.contador {
+    display: none; 
+}
+
+/* --- Card da Pergunta --- */
+.card-pergunta {
+    /* Cor do card */
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.card-pergunta .card-header {
+    margin-bottom: 20px;
+}
+
+.card-pergunta .categoria {
+    font-size: 14px;
+    font-weight: 500;
+    /* Cor do texto secundário */
+    color: #6c757d; 
+    margin: 0;
+}
+
+.card-pergunta .questao {
+    font-size: 14px;
+    /* Cor do texto secundário */
+    color: #6c757d; 
+    margin: 0;
+}
+
+.titulo-pergunta {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 30px;
+    /* Cor do texto escuro */
+    color: #343a40; 
+}
+
+/* --- Opções --- */
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.opcao:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.radio-hidden {
+    display: none; 
+}
+
+.opcao-texto {
+    display: flex;
+    align-items: center;
+}
+
+.opcao-icon {
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 20px; 
+    text-align: center;
+}
+
+/* Cores das opções */
+.opcao.selecionado.verde {
+    /* Cor do sucesso/verde */
+    border-color: #28a745;
+    background-color: #e8f5e9; 
+    /* Cor do sucesso/verde */
+    color: #28a745; 
+}
+.opcao.selecionado.laranja {
+    /* Cor do warning/laranja */
+    border-color: #ffc107;
+    background-color: #fffde7; 
+}
+.opcao.selecionado.vermelho {
+    /* Cor do danger/vermelho */
+    border-color: #dc3545;
+    background-color: #ffebee; 
+}
+
+.opcao-icon.verde { 
+    /* Cor do sucesso/verde */
+    color: #28a745; 
+}
+.opcao-icon.laranja { 
+    /* Cor do warning/laranja */
+    color: #ffc107; 
+}
+.opcao-icon.vermelho { 
+    /* Cor do danger/vermelho */
+    color: #dc3545; 
+}
+
+
+/* --- Rodapé de Navegação --- */
+.footer-navegacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn.anterior {
+    /* Cor do card */
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    /* Cor do texto escuro */
+    color: #343a40; 
+}
+.btn.anterior:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn.proxima {
+    /* Cor do sucesso/verde */
+    background: #28a745;
+    border: none;
+    color: white;
+}
+.btn.proxima.finalizar {
+    /* Cor primária/azul */
+    background: #007bff; 
+}
+.btn.proxima:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- Indicadores (Bolinhas) --- */
+.indicadores {
+    display: flex;
+    gap: 8px;
+}
+
+.bolinha {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.bolinha.ativa {
+    /* Cor primária/azul */
+    background-color: #007bff; 
+}
+
+.bolinha.respondida {
+    /* Cor do sucesso/verde */
+    background-color: #28a745; 
+}

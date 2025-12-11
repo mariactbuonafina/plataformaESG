@@ -1,0 +1,347 @@
+.recomendacoes-esg-container {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.recomendacoes-esg-container h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+}
+
+.error {
+  color: #e74c3c;
+  background: #fadbd8;
+  border-radius: 5px;
+}
+
+/* Recomendações por Selo */
+.seal-recommendations {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.seal-recommendations h3 {
+  margin-top: 0;
+  font-size: 1.4em;
+}
+
+/* Recomendações Gerais */
+.general-recommendations {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border-left: 5px solid #3498db;
+}
+
+.general-recommendations h3 {
+  color: #2c3e50;
+  margin-top: 0;
+}
+
+/* Lista de Recomendações */
+.recommendation-list {
+  display: grid;
+  gap: 12px;
+}
+
+.recommendation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 5px;
+  border-left: 4px solid #3498db;
+}
+
+.seal-recommendations .recommendation-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: #ffffff;
+}
+
+.recommendation-icon {
+  font-size: 1.5em;
+  flex-shrink: 0;
+  color: #3498db;
+}
+
+.seal-recommendations .recommendation-icon {
+  color: #ffffff;
+}
+
+.recommendation-item p {
+  margin: 0;
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+.seal-recommendations .recommendation-item p {
+  color: white;
+}
+
+/* Seção de Dicas */
+.tips-section {
+  margin-bottom: 30px;
+}
+
+.tips-section h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tip-card {
+  padding: 25px;
+  border-radius: 10px;
+  background: white;
+  border-left: 5px solid;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tip-blue {
+  border-left-color: #3498db;
+  background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
+}
+
+.tip-green {
+  border-left-color: #2ecc71;
+  background: linear-gradient(135deg, #eafaf1 0%, #d5f4e6 100%);
+}
+
+.tip-purple {
+  border-left-color: #9b59b6;
+  background: linear-gradient(135deg, #f4ecf7 0%, #ebdef0 100%);
+}
+
+.tip-card h4 {
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+  font-size: 1.2em;
+}
+
+.tip-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tip-card li {
+  color: #555;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.tip-card li:last-child {
+  margin-bottom: 0;
+}
+
+.tip-card li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #3498db;
+  font-weight: bold;
+}
+
+.tip-green li::before {
+  color: #2ecc71;
+}
+
+.tip-purple li::before {
+  color: #9b59b6;
+}
+
+/* Timeline - Próximos Passos */
+.next-steps {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.next-steps h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.steps-timeline {
+  display: grid;
+  gap: 15px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 45px;
+  top: 80px;
+  width: 2px;
+  height: 20px;
+  background: #3498db;
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.timeline-content h4 {
+  color: #2c3e50;
+  margin: 0 0 5px 0;
+}
+
+.timeline-content p {
+  color: #7f8c8d;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Ações Rápidas */
+.quick-actions {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.quick-actions h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.action-btn {
+  padding: 15px 20px;
+  background: white;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  color: #3498db;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: #3498db;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Suporte */
+.support-section {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.support-section h3 {
+  margin-top: 0;
+  font-size: 1.4em;
+}
+
+.support-section p {
+  margin-bottom: 20px;
+  font-size: 1.05em;
+}
+
+.btn-support {
+  padding: 12px 30px;
+  background: white;
+  color: #2ecc71;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1em;
+}
+
+.btn-support:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-timeline {
+    gap: 20px;
+  }
+
+  .timeline-item {
+    padding: 15px;
+  }
+}
